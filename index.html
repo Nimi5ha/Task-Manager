@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Task Manager</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- Particle canvas -->
+  <canvas id="canvas-bg"></canvas>
+  <!-- Confetti canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <div class="app">
+
+    <!-- Header -->
+    <header class="header">
+      <h1>Task Manager</h1>
+      <p class="subtitle" id="stats">0 tasks remaining</p>
+      <div class="progress-wrap">
+        <div class="progress-bar" id="progress-bar"></div>
+      </div>
+    </header>
+
+    <!-- Add Task -->
+    <section class="add-task-section glass-card">
+      <form id="task-form">
+        <div class="form-row">
+          <input type="text" id="task-input" placeholder="What needs to be done?" autocomplete="off" maxlength="120" required />
+          <button type="submit" class="btn btn-primary" id="add-btn">Add Task</button>
+        </div>
+        <div class="form-row form-extras">
+          <input type="text" id="task-desc" placeholder="Description (optional)" maxlength="200" />
+          <select id="task-priority">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+          </select>
+          <input type="date" id="task-due" />
+        </div>
+      </form>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+      <button class="filter-btn active" data-filter="all"><span>All</span></button>
+      <button class="filter-btn" data-filter="active"><span>Active</span></button>
+      <button class="filter-btn" data-filter="completed"><span>Completed</span></button>
+      <button class="btn-clear-completed" id="clear-completed">Clear Completed</button>
+    </section>
+
+    <!-- Task List -->
+    <section class="task-list-section">
+      <ul class="task-list" id="task-list"></ul>
+      <div class="empty-state" id="empty-state">
+        <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="8" y="12" width="48" height="44" rx="5" stroke="currentColor" stroke-width="2.5"/>
+          <path d="M20 28h24M20 36h16" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M8 22h48" stroke="currentColor" stroke-width="2.5"/>
+          <circle cx="16" cy="17" r="2" fill="currentColor" opacity=".4"/>
+          <circle cx="24" cy="17" r="2" fill="currentColor" opacity=".4"/>
+        </svg>
+        <p>Nothing here — add your first task!</p>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- Edit Modal -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <h2>Edit Task</h2>
+      <label>Title
+        <input type="text" id="edit-title" maxlength="120" />
+      </label>
+      <label>Description
+        <input type="text" id="edit-desc" maxlength="200" />
+      </label>
+      <label>Priority
+        <select id="edit-priority">
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+      </label>
+      <label>Due Date
+        <input type="date" id="edit-due" />
+      </label>
+      <div class="modal-actions">
+        <button class="btn btn-secondary" id="modal-cancel">Cancel</button>
+        <button class="btn btn-primary" id="modal-save">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
